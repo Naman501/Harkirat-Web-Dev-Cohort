@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+    <script>
+        async function add() {
+            const x=document.getElementById("first").value
+            const y=document.getElementById('second').value
+
+            const res=await fetch("http://localhost:5000/sum?a=" +x+"&b="+y)
+            const json=await res.json()
+            document.getElementById("response").innerHTML=json.ans;
+        }
+
+            async function mul() {
+            const x=document.getElementById("first").value
+            const y=document.getElementById('second').value
+
+            const res=await fetch("http://localhost:5000/multiply/" +x+"/"+y)
+            const json=await res.json()
+            document.getElementById("response").innerHTML=json.ans;
+        }
+
+        async function div() {
+            const x=document.getElementById("first").value
+            const y=document.getElementById("second").value
+
+            const res=await fetch("http://localhost:5000/div?a="+x+"&b="+y)
+            const json=await res.json()
+            document.getElementById("response").innerHTML=json.ans
+
+        }
+
+        async function sub() {
+            const a=document.getElementById("first").value;
+            const b=document.getElementById("second").value
+
+            const res=await fetch("http://localhost:5000/sub/"+a+"/"+b)
+            const json=await res.json()
+            document.getElementById("response").innerHTML=json.ans
+
+        }   
+    </script>
+</head>
+<body>
+    <input id="first" type="text" placeholder="First Number"/>
+    <input id="second" type="text" placeholder="Second Number" />
+
+    <button onclick="add()">+</button>
+    <button onclick="mul()">*</button>
+    <button onclick="div()">/</button>
+    <button onclick="sub()">-</button>
+    <div id="response"></div>
+</body>
+</html>
