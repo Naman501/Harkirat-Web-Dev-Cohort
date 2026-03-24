@@ -27,14 +27,18 @@
             
             //axios
 
-            const res=await axios.get('http://localhost:5000/notes')
+            const res=await axios.get('http://localhost:5000/notes',{
+                headers:{
+                    token:localStorage.getItem("TOEKN")
+                }
+            })
             const notes=res.data.notes
-            console.log(res.data.notes)
+            console.log("hello",res.data.notes)
         
             document.getElementById("notes").innerHTML=""
             for(let i=0;i<notes.length;i++){
                 const noteNote=document.createElement("div")
-                noteNote.innerHTML=notes[i]
+                noteNote.innerHTML=notes[i].note
                 document.getElementById("notes").appendChild(noteNote)
             }
         }
@@ -44,6 +48,10 @@
             if(document.getElementById("userNote").value==="")return;
            await axios.post("http://localhost:5000/create",{
                 note:document.getElementById("userNote").value
+            },{
+                 headers:{
+                    token:localStorage.getItem("TOEKN")
+                }
             })
 
             const newNode=document.createElement("div")
