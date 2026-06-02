@@ -102,4 +102,9 @@ console.log("s",senderAccount,"R",receiverAccount)
 
 }
 
-module.exports = { balance, transfer };
+async function fetchAccounts(req,res){
+  
+const account=await accountModel.findOne({userId})
+}
+
+module.exports = { balance, transfer,fetchAccounts };
